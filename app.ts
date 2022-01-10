@@ -87,5 +87,3 @@ window.onkeydown = (ev: KeyboardEvent): any => {
         document.getElementById(indexToAdd.toString())?.scrollIntoView();
     }
 }
-
-// TODO: make the header sticky as the gallery scrolls horizontally
