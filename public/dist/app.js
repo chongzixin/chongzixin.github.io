@@ -17,7 +17,7 @@ imgArr.forEach(function (filename, index) {
     gallery_item.id = (index + 1).toString(); // add 1 to the index to process our calculation
     gallery_item.className = "grid-item";
     // if this is the first image, set it as active
-    if (index === 5) {
+    if (index === 0) {
         gallery_item.className += " active";
     }
     var image = document.createElement("img");
@@ -34,7 +34,6 @@ window.onkeydown = function (ev) {
     processKey(ev.key);
     function processKey(key) {
         var currentIndex = +document.getElementsByClassName("active")[0].id;
-        console.log(currentIndex);
         var newIndex;
         if (key === "ArrowUp" && currentIndex - num_cols > 0) {
             newIndex = currentIndex - num_cols;
