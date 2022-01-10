@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/chongzixin/chongzixin.github.io#readme",
   "devDependencies": {
+    "@types/node": "^17.0.8",
     "ts-loader": "^9.2.6",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
