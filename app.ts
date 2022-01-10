@@ -20,7 +20,7 @@ imgArr.forEach((filename: string, index: number) => {
     gallery_item.className = "grid-item";
 
     // if this is the first image, set it as active
-    if(index === 5) {
+    if(index === 0) {
         gallery_item.className += " active";
     }
     
@@ -41,8 +41,6 @@ window.onkeydown = (ev: KeyboardEvent): any => {
 
     function processKey(key: string) {
         const currentIndex = +document.getElementsByClassName("active")[0].id;
-        console.log(currentIndex);
-    
         let newIndex;
     
         if(key === "ArrowUp" && currentIndex - num_cols > 0) {
