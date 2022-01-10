@@ -6,6 +6,20 @@ const imgArr: string[] = [
     'pink.png',
     'purple.png',
     'red.png',
+    'black.png',
+    'blue.png',
+    'green.png',
+    'orange.png',
+    'pink.png',
+    'purple.png',
+    'red.png',
+    'black.png',
+    'blue.png',
+    'green.png',
+    'orange.png',
+    'pink.png',
+    'purple.png',
+    'red.png',
 ];
 
 const total_images = imgArr.length;
@@ -68,5 +82,6 @@ window.onkeydown = (ev: KeyboardEvent): any => {
     function toggleActive(indexToRemove:number, indexToAdd:number) {
         document.getElementById(indexToRemove.toString())?.classList.remove("active");
         document.getElementById(indexToAdd.toString())?.classList.add("active");
+        document.getElementById(indexToAdd.toString())?.scrollIntoView();
     }
 }

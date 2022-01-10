@@ -7,6 +7,20 @@ var imgArr = [
     'pink.png',
     'purple.png',
     'red.png',
+    'black.png',
+    'blue.png',
+    'green.png',
+    'orange.png',
+    'pink.png',
+    'purple.png',
+    'red.png',
+    'black.png',
+    'blue.png',
+    'green.png',
+    'orange.png',
+    'pink.png',
+    'purple.png',
+    'red.png',
 ];
 var total_images = imgArr.length;
 var num_rows = 2;
@@ -56,8 +70,9 @@ window.onkeydown = function (ev) {
         }
     }
     function toggleActive(indexToRemove, indexToAdd) {
-        var _a, _b;
+        var _a, _b, _c;
         (_a = document.getElementById(indexToRemove.toString())) === null || _a === void 0 ? void 0 : _a.classList.remove("active");
         (_b = document.getElementById(indexToAdd.toString())) === null || _b === void 0 ? void 0 : _b.classList.add("active");
+        (_c = document.getElementById(indexToAdd.toString())) === null || _c === void 0 ? void 0 : _c.scrollIntoView();
     }
 };
