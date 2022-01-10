@@ -17,10 +17,21 @@ h2 {
     color: #99d6ea;
 }
 
-.grid
-{
+.grid {
     display: grid;
+    overflow-x: auto;
+    white-space: nowrap;
     grid-gap:50px 50px; /* 50 pixels of space added between rows and 50 pixels added between columns  */
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.grid::-webkit-scrollbar {
+    display: none;
 }
 
 .active {
