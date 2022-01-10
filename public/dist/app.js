@@ -8,9 +8,15 @@ var imgArr = [
     'purple.png',
     'red.png',
 ];
+var total_images = imgArr.length;
+var num_rows = 2;
+var num_cols = Math.ceil(total_images / num_rows);
 // randomise array before loading into gallery
 // TODO: shuffle array
 var gallery = document.getElementById("gallery");
+// set number of rows and columns in CSS
+gallery.style.gridTemplateRows = "repeat(".concat(num_rows, ", 300px)");
+gallery.style.gridTemplateColumns = "repeat(".concat(num_cols, ", 400px)");
 imgArr.forEach(function (filename, index) {
     // produce the following: <div id="${index}" class="grid-item"><img src="assets/${filename}"></div>
     var gallery_item = document.createElement("div");
@@ -25,9 +31,6 @@ imgArr.forEach(function (filename, index) {
     gallery_item.appendChild(image);
     gallery.appendChild(gallery_item);
 });
-var total_images = imgArr.length;
-var num_rows = 2;
-var num_cols = Math.ceil(total_images / num_rows);
 window.onkeydown = function (ev) {
     if (ev.defaultPrevented)
         return;

@@ -8,10 +8,18 @@ const imgArr: string[] = [
     'red.png',
 ];
 
+const total_images = imgArr.length;
+const num_rows = 2;
+const num_cols = Math.ceil(total_images/num_rows);
 
 // randomise array before loading into gallery
 // TODO: shuffle array
 const gallery = document.getElementById("gallery") as HTMLDivElement;
+
+// set number of rows and columns in CSS
+gallery.style.gridTemplateRows = `repeat(${num_rows}, 300px)`;
+gallery.style.gridTemplateColumns = `repeat(${num_cols}, 400px)`;
+
 imgArr.forEach((filename: string, index: number) => {
     // produce the following: <div id="${index}" class="grid-item"><img src="assets/${filename}"></div>
 
@@ -30,10 +38,6 @@ imgArr.forEach((filename: string, index: number) => {
 
     gallery.appendChild(gallery_item);
 });
-
-const total_images = imgArr.length;
-const num_rows = 2;
-const num_cols = Math.ceil(total_images/num_rows);
 
 window.onkeydown = (ev: KeyboardEvent): any => {
     if(ev.defaultPrevented) return;
