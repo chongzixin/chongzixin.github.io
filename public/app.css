@@ -1,5 +1,16 @@
-section,h1 {
-    padding: 0 1em;
+body {
+    /* background-image: url("https://www.wowstuff.com/media/moca3zzq/cocomelon.jpg?anchor=center&mode=crop&heightratio=0.5625&width=1920&rnd=132508667574870000"); */
+    background-color: maroon;
+}
+
+h1 {
+    font-size: 8em;
+}
+
+.text {
+    text-align: center;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .grid
@@ -9,7 +20,7 @@ section,h1 {
 }
 
 .active {
-    border: thin gray solid;
+    border: thick white solid;
     padding: 10px;
 }
 
