@@ -1,16 +1,20 @@
 body {
     /* background-image: url("https://www.wowstuff.com/media/moca3zzq/cocomelon.jpg?anchor=center&mode=crop&heightratio=0.5625&width=1920&rnd=132508667574870000"); */
-    background-color: maroon;
-}
-
-h1 {
-    font-size: 8em;
+    background-color: #1b1d36;
 }
 
 .text {
     text-align: center;
-    color: white;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    font-size: 8em;
+    color: #fca6d1;
+}
+
+h2 {
+    color: #99d6ea;
 }
 
 .grid
