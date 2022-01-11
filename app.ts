@@ -1,6 +1,5 @@
 // TODO: reduce repeat thumbnails from showing up too frequently
 //     - could be by adding more images
-// TODO: change css such that images are not squashed
 
 // pre-load the list of available images in assets
 const all_available_images: string[] = [
