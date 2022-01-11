@@ -38,7 +38,7 @@ var all_available_images = [
     'andy-the-animalambulance.png',
     'amber-the-ambulance.png',
 ];
-// choose your desired number of images and rows
+// choose your desired number of images and rows. show all images by default.
 var NUM_IMAGES_TO_SHOW = all_available_images.length;
 var NUM_ROWS = 2;
 var num_cols = Math.ceil(NUM_IMAGES_TO_SHOW / NUM_ROWS);

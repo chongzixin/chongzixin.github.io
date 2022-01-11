@@ -39,7 +39,7 @@ const all_available_images: string[] = [
     'amber-the-ambulance.png',
 ];
 
-// choose your desired number of images and rows
+// choose your desired number of images and rows. show all images by default.
 const NUM_IMAGES_TO_SHOW = all_available_images.length;
 const NUM_ROWS = 2;
 
