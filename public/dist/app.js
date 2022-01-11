@@ -1,6 +1,7 @@
 "use strict";
 // TODO: reduce repeat thumbnails from showing up too frequently
 //     - could be by adding more images
+// TODO: change css such that images are not squashed
 // pre-load the list of available images in assets
 var all_available_images = [
     // colours
