@@ -3,6 +3,7 @@
 
 // pre-load the list of available images in assets
 const all_available_images: string[] = [
+    // colours
     'black.png',
     'blue.png',
     'green.png',
@@ -10,14 +11,36 @@ const all_available_images: string[] = [
     'pink.png',
     'purple.png',
     'brown.png',
+    'red.png',
+    'grey.png',
     'white.png',
+    // fruits
     'kiwi.png',
     'strawberry.png',
-    'white-tiger.png',
+    // animals
+    'zebra.png',
+    'tiger.png',
+    'elephant.png',
+    'lion.png',
+    'walrus.png',
+    'dolphin.png',
+    // gecko garage
+    'rick-the-roller.png',
+    'caroline-the-crane.png',
+    'max-the-monster-truck.png',
+    'helen-the-helicopter.png',
+    'bobby-the-bus.png',
+    'sammy-the-schoolbus.png',
+    'celia-the-cementmixer.png',
+    'george-the-giantdumptruck.png',
+    'dylan-the-dumptruck.png',
+    'ryan-the-wreckingballcrane.png',
+    'andy-the-animalambulance.png',
+    'amber-the-ambulance.png',
 ];
 
 // choose your desired number of images and rows
-const NUM_IMAGES_TO_SHOW = 11;
+const NUM_IMAGES_TO_SHOW = all_available_images.length;
 const NUM_ROWS = 2;
 
 const num_cols = Math.ceil(NUM_IMAGES_TO_SHOW / NUM_ROWS);

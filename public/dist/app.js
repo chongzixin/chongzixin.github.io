@@ -3,6 +3,7 @@
 //     - could be by adding more images
 // pre-load the list of available images in assets
 var all_available_images = [
+    // colours
     'black.png',
     'blue.png',
     'green.png',
@@ -10,13 +11,35 @@ var all_available_images = [
     'pink.png',
     'purple.png',
     'brown.png',
+    'red.png',
+    'grey.png',
     'white.png',
+    // fruits
     'kiwi.png',
     'strawberry.png',
-    'white-tiger.png',
+    // animals
+    'zebra.png',
+    'tiger.png',
+    'elephant.png',
+    'lion.png',
+    'walrus.png',
+    'dolphin.png',
+    // gecko garage
+    'rick-the-roller.png',
+    'caroline-the-crane.png',
+    'max-the-monster-truck.png',
+    'helen-the-helicopter.png',
+    'bobby-the-bus.png',
+    'sammy-the-schoolbus.png',
+    'celia-the-cementmixer.png',
+    'george-the-giantdumptruck.png',
+    'dylan-the-dumptruck.png',
+    'ryan-the-wreckingballcrane.png',
+    'andy-the-animalambulance.png',
+    'amber-the-ambulance.png',
 ];
 // choose your desired number of images and rows
-var NUM_IMAGES_TO_SHOW = 11;
+var NUM_IMAGES_TO_SHOW = all_available_images.length;
 var NUM_ROWS = 2;
 var num_cols = Math.ceil(NUM_IMAGES_TO_SHOW / NUM_ROWS);
 // randomly retrieve desired number of thumbnails from list
