@@ -6,6 +6,8 @@ var imgArr = [
     'orange.png',
     'pink.png',
     'purple.png',
+    'brown.png',
+    'white.png',
     'red.png',
     'grey.png',
     'black.png',
@@ -13,6 +15,8 @@ var imgArr = [
     'green.png',
     'orange.png',
     'pink.png',
+    'brown.png',
+    'white.png',
     'purple.png',
     'grey.png',
     'black.png',
@@ -23,6 +27,8 @@ var imgArr = [
     'purple.png',
     'red.png',
     'grey.png',
+    'brown.png',
+    'white.png',
 ];
 var total_images = imgArr.length;
 var num_rows = 2;
