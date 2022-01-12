@@ -9,6 +9,7 @@ const imgArr: string[] = [
     'white.png',
     'red.png',
     'grey.png',
+    'yellow.png',
     'black.png',
     'blue.png',
     'green.png',
@@ -18,6 +19,7 @@ const imgArr: string[] = [
     'white.png',
     'purple.png',
     'grey.png',
+    'yellow.png',
     'black.png',
     'blue.png',
     'green.png',
@@ -28,6 +30,7 @@ const imgArr: string[] = [
     'grey.png',
     'brown.png',
     'white.png',
+    'yellow.png',
 ];
 
 const total_images = imgArr.length;
