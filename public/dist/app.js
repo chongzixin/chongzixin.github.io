@@ -3,27 +3,27 @@
 //     - could be by adding more images
 // pre-load the list of available images in assets
 var all_available_images = [
-    // colours
-    'black.png',
-    'blue.png',
-    'green.png',
-    'orange.png',
-    'pink.png',
-    'purple.png',
-    'brown.png',
-    'red.png',
-    'grey.png',
-    'white.png',
-    // fruits
-    'kiwi.png',
-    'strawberry.png',
-    // animals
-    'zebra.png',
-    'tiger.png',
-    'elephant.png',
-    'lion.png',
-    'walrus.png',
-    'dolphin.png',
+    // // colours
+    // 'black.png',
+    // 'blue.png',
+    // 'green.png',
+    // 'orange.png',
+    // 'pink.png',
+    // 'purple.png',
+    // 'brown.png',
+    // 'red.png',
+    // 'grey.png',
+    // 'white.png',
+    // // fruits
+    // 'kiwi.png',
+    // 'strawberry.png',
+    // // animals
+    // 'zebra.png',
+    // 'tiger.png',
+    // 'elephant.png',
+    // 'lion.png',
+    // 'walrus.png',
+    // 'dolphin.png',
     // gecko garage
     'rick-the-roller.png',
     'caroline-the-crane.png',
@@ -37,6 +37,22 @@ var all_available_images = [
     'ryan-the-wreckingballcrane.png',
     'andy-the-animalambulance.png',
     'amber-the-ambulance.png',
+    'vicky-the-icecreamvan.png',
+    'chelsea-the-cherrypicker.png',
+    'rebecca-the-recyclingtruck.png',
+    'fiona-the-firetruck.png',
+    'tony-the-taxi.png',
+    'sophie-the-sportscar.png',
+    'mally-the-motorcycle.png',
+    'trevor-the-tractor.png',
+    'evie-the-ev.png',
+    'eric-the-excavator.png',
+    'eric-the-excavator.jpeg',
+    'danny-the-digger.png',
+    'larry-the-lorry.png',
+    'gecko-baby-truck.png',
+    'gecko-video-1.png',
+    'gecko-muddy-trucks.png',
 ];
 // choose your desired number of images and rows. show all images by default.
 var NUM_IMAGES_TO_SHOW = all_available_images.length;
