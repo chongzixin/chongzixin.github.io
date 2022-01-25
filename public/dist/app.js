@@ -1,6 +1,11 @@
 "use strict";
 // TODO: reduce repeat thumbnails from showing up too frequently
-//     - could be by adding more images
+// TODO: automatically get images from file
+// const fs = require('fs');
+// const assets_folder = './public/assets/';
+// fs.readdirSync(assets_folder).forEach((file: any) => {
+//     console.log(file);
+// });
 // pre-load the list of available images in assets
 var all_available_images = [
     // // colours
@@ -46,13 +51,13 @@ var all_available_images = [
     'mally-the-motorcycle.png',
     'trevor-the-tractor.png',
     'evie-the-ev.png',
-    'eric-the-excavator.png',
     'eric-the-excavator.jpeg',
     'danny-the-digger.png',
     'larry-the-lorry.png',
     'gecko-baby-truck.png',
     'gecko-video-1.png',
     'gecko-muddy-trucks.png',
+    'oscar-the-oldbus.png',
 ];
 // choose your desired number of images and rows. show all images by default.
 var NUM_IMAGES_TO_SHOW = all_available_images.length;

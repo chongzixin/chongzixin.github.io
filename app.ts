@@ -1,5 +1,11 @@
 // TODO: reduce repeat thumbnails from showing up too frequently
-//     - could be by adding more images
+
+// TODO: automatically get images from file
+// const fs = require('fs');
+// const assets_folder = './public/assets/';
+// fs.readdirSync(assets_folder).forEach((file: any) => {
+//     console.log(file);
+// });
 
 // pre-load the list of available images in assets
 const all_available_images: string[] = [
@@ -46,13 +52,13 @@ const all_available_images: string[] = [
     'mally-the-motorcycle.png',
     'trevor-the-tractor.png',
     'evie-the-ev.png',
-    'eric-the-excavator.png',
     'eric-the-excavator.jpeg',
     'danny-the-digger.png',
     'larry-the-lorry.png',
     'gecko-baby-truck.png',
     'gecko-video-1.png',
     'gecko-muddy-trucks.png',
+    'oscar-the-oldbus.png',
 ];
 
 // choose your desired number of images and rows. show all images by default.
