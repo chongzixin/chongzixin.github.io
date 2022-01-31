@@ -59,6 +59,10 @@ const all_available_images: string[] = [
     'gecko-video-1.png',
     'gecko-muddy-trucks.png',
     'oscar-the-oldbus.png',
+    'tilly-the-towtruck.png',
+    'bobby-stuck-in-snow.png',
+    'mia-the-minidigger.png',
+    'leo-the-limousine.png',
 ];
 
 // choose your desired number of images and rows. show all images by default.
