@@ -62,6 +62,12 @@ var all_available_images = [
     'bobby-stuck-in-snow.png',
     'mia-the-minidigger.png',
     'leo-the-limousine.png',
+    'polly-the-littlebus.png',
+    'five-green-buses.png',
+    'maggie-the-minifiretruck.png',
+    'celia-muddy-truck.png',
+    'sophie-larry-muddy.png',
+    'icecream-truck-smoothie.png',
 ];
 // choose your desired number of images and rows. show all images by default.
 var NUM_IMAGES_TO_SHOW = all_available_images.length;
