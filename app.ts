@@ -1,5 +1,3 @@
-// TODO: reduce repeat thumbnails from showing up too frequently
-
 // TODO: automatically get images from file
 // const fs = require('fs');
 // const assets_folder = './public/assets/';
