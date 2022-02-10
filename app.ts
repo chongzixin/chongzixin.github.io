@@ -109,7 +109,7 @@ window.onkeydown = (ev: KeyboardEvent): any => {
     function processKey(key: string) {
         const currentIndex = +document.getElementsByClassName("active")[0].id;
         let newIndex;
-    
+        
         if(key === "ArrowUp" && currentIndex - num_cols > 0) {
             newIndex = currentIndex - num_cols;
             toggleActive(currentIndex, newIndex);
@@ -125,6 +125,10 @@ window.onkeydown = (ev: KeyboardEvent): any => {
         else if(key === "ArrowRight" && currentIndex % num_cols != 0 && currentIndex + 1 <= NUM_IMAGES_TO_SHOW) {
             newIndex = currentIndex + 1;
             toggleActive(currentIndex, newIndex);
+        }
+        else if(key === "r") {
+            // if user presses R, refresh page to randomise images again.
+            location.reload();
         }
     }
 

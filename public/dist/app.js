@@ -1,5 +1,4 @@
 "use strict";
-// TODO: reduce repeat thumbnails from showing up too frequently
 // TODO: automatically get images from file
 // const fs = require('fs');
 // const assets_folder = './public/assets/';
@@ -115,6 +114,10 @@ window.onkeydown = function (ev) {
         else if (key === "ArrowRight" && currentIndex % num_cols != 0 && currentIndex + 1 <= NUM_IMAGES_TO_SHOW) {
             newIndex = currentIndex + 1;
             toggleActive(currentIndex, newIndex);
+        }
+        else if (key === "r") {
+            // if user presses R, refresh page to randomise images again.
+            location.reload();
         }
     }
     function toggleActive(indexToRemove, indexToAdd) {
