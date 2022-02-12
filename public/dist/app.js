@@ -41,6 +41,8 @@ var all_available_images = [
     'celia-muddy-truck.png',
     'sophie-larry-muddy.png',
     'icecream-truck-smoothie.png',
+    'maisie-the-mower.png',
+    'babytruck-halloween.png',
 ];
 var NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
 var NUM_ROWS = 2; // change number of rows accordingly
