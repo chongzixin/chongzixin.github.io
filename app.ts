@@ -43,6 +43,8 @@ const all_available_images: string[] = [
     'icecream-truck-smoothie.png',
     'maisie-the-mower.png',
     'babytruck-halloween.png',
+    'bobby-samy-muddy.png',
+    'gecko-garage-all.png',
 ];
 
 const NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
