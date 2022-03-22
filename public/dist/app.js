@@ -45,6 +45,7 @@ var all_available_images = [
     'babytruck-halloween.png',
     'bobby-samy-muddy.png',
     'gecko-garage-all.png',
+    'florence-the-forklift.png',
 ];
 var NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
 var NUM_ROWS = 2; // change number of rows accordingly
