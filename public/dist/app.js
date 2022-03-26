@@ -57,7 +57,9 @@ var NUM_ROWS = 2; // change number of rows accordingly
 var num_cols = Math.ceil(NUM_IMAGES_TO_SHOW / NUM_ROWS);
 /* MAIN */
 var images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW);
-paintImagesOnScreen(images_to_show);
+paintImagesInGrid(images_to_show);
+var quiz_img = getRandomThumbnails(all_available_images, 1);
+paintQuiz(quiz_img);
 addEventListeners();
 /* FUNCTION DEFINITIONS */
 // randomly retrieve desired number of thumbnails from list
@@ -72,9 +74,10 @@ function getRandomThumbnails(arr, num) {
         result[num] = arr[x in taken ? taken[x] : x];
         taken[x] = --len in taken ? taken[len] : len;
     }
-    return result;
+    // if num is 1, return just the first element, else return an array
+    return num === 1 ? result[0] : result;
 }
-function paintImagesOnScreen(images) {
+function paintImagesInGrid(images) {
     // set number of rows and columns in CSS
     var gallery = document.getElementById("gallery");
     gallery.innerHTML = ""; // clear the gallery before painting
@@ -94,6 +97,10 @@ function paintImagesOnScreen(images) {
         gallery_item.appendChild(image);
         gallery.appendChild(gallery_item);
     });
+}
+function paintQuiz(img) {
+    var quiz_img = document.getElementById("quiz_img");
+    quiz_img.src = "assets/".concat(img);
 }
 function addEventListeners() {
     window.onkeydown = function (ev) {
@@ -123,8 +130,14 @@ function addEventListeners() {
                 // if user presses R or End, refresh page to randomise images again.
                 // we use End to provide convenience to users because it's near the arrow keys on the keyboard.
                 images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW);
-                paintImagesOnScreen(images_to_show);
+                paintImagesInGrid(images_to_show);
+                quiz_img = getRandomThumbnails(all_available_images, 1);
+                paintQuiz(quiz_img);
                 toggleActive(currentIndex, 1);
+            }
+            else if (key === "Enter") {
+                console.log(images_to_show[currentIndex]);
+                // if filename matches, remove thumbnail
             }
         }
         function toggleActive(indexToRemove, indexToAdd) {

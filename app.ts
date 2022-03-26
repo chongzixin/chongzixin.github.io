@@ -58,30 +58,34 @@ const NUM_ROWS = 2; // change number of rows accordingly
 const num_cols = Math.ceil(NUM_IMAGES_TO_SHOW / NUM_ROWS);
 
 /* MAIN */
-let images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW);
-paintImagesOnScreen(images_to_show);
+let images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW) as string[];
+paintImagesInGrid(images_to_show);
+
+let quiz_img = getRandomThumbnails(all_available_images, 1) as string;
+paintQuiz(quiz_img);
 addEventListeners();
 
 /* FUNCTION DEFINITIONS */
 
 // randomly retrieve desired number of thumbnails from list
-function getRandomThumbnails(arr:string[], num:number):string[] {
+function getRandomThumbnails(arr:string[], num:number): string[] | string {
     let result = new Array(num);
     let len = arr.length;
     let taken = new Array(len);
     
     if (num > len)
-    throw new RangeError("getRandom: more elements taken than available");
+        throw new RangeError("getRandom: more elements taken than available");
     while (num--) {
         const x = Math.floor(Math.random() * len);
         result[num] = arr[x in taken ? taken[x] : x];
         taken[x] = --len in taken ? taken[len] : len;
     }
     
-    return result;
+    // if num is 1, return just the first element, else return an array
+    return num === 1 ? result[0] : result;
 }
 
-function paintImagesOnScreen(images:string[]) {
+function paintImagesInGrid(images:string[]) {
     // set number of rows and columns in CSS
     const gallery = document.getElementById("gallery") as HTMLDivElement;
     gallery.innerHTML = ""; // clear the gallery before painting
@@ -107,6 +111,11 @@ function paintImagesOnScreen(images:string[]) {
         
         gallery.appendChild(gallery_item);
     });
+}
+
+function paintQuiz(img: string) {
+    const quiz_img = document.getElementById("quiz_img") as HTMLImageElement;
+    quiz_img.src = `assets/${img}`;
 }
 
 function addEventListeners() {
@@ -137,9 +146,18 @@ function addEventListeners() {
             else if(key === "r" || key === "End") {
                 // if user presses R or End, refresh page to randomise images again.
                 // we use End to provide convenience to users because it's near the arrow keys on the keyboard.
-                images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW);
-                paintImagesOnScreen(images_to_show);
+                images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW) as string[];
+                paintImagesInGrid(images_to_show);
+
+                quiz_img = getRandomThumbnails(all_available_images, 1) as string;
+                paintQuiz(quiz_img);
+
                 toggleActive(currentIndex, 1);
+            }
+            else if(key === "Enter") {
+                console.log(images_to_show[currentIndex]);
+
+                // if filename matches, remove thumbnail
             }
         }
         
