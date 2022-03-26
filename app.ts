@@ -53,17 +53,18 @@ const all_available_images: string[] = [
     'harry-the-babybus.png',
 ];
 
-const NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
+const NUM_IMAGES_TO_SHOW = 4;
+// const NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
 const NUM_ROWS = 2; // change number of rows accordingly
-const num_cols = Math.ceil(NUM_IMAGES_TO_SHOW / NUM_ROWS);
 
 /* MAIN */
+let quiz_img:string;
+let game_ended:boolean;
 let images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW) as string[];
-paintImagesInGrid(images_to_show);
+let num_cols:number;
 
-let quiz_img = getRandomThumbnails(all_available_images, 1) as string;
-paintQuiz(quiz_img);
 addEventListeners();
+reloadGame(images_to_show);
 
 /* FUNCTION DEFINITIONS */
 
@@ -86,6 +87,11 @@ function getRandomThumbnails(arr:string[], num:number): string[] | string {
 }
 
 function paintImagesInGrid(images:string[]) {
+    num_cols = Math.ceil(images_to_show.length / NUM_ROWS);
+
+    const instructions = document.getElementById("instructions") as HTMLDivElement;
+    instructions.innerHTML = "Use the arrow keys (↑, ↓, ←, →) to find your favourite vehicle, press End to randomise image locations";
+
     // set number of rows and columns in CSS
     const gallery = document.getElementById("gallery") as HTMLDivElement;
     gallery.innerHTML = ""; // clear the gallery before painting
@@ -114,8 +120,32 @@ function paintImagesInGrid(images:string[]) {
 }
 
 function paintQuiz(img: string) {
+    const quiz = document.getElementById("quiz") as HTMLDivElement;
+    quiz.style.display = "flex"; // show it again because it gets hidden when game ends
     const quiz_img = document.getElementById("quiz_img") as HTMLImageElement;
     quiz_img.src = `assets/${img}`;
+}
+
+function reloadGame(images:string[]) {
+    game_ended = false;
+    quiz_img = getRandomThumbnails(images_to_show, 1) as string;
+    paintImagesInGrid(images_to_show);
+    paintQuiz(quiz_img);
+}
+
+function endGame() {
+    game_ended = true;
+
+    const instructions = document.getElementById("instructions") as HTMLDivElement;
+    instructions.innerHTML = "You win! Press any key to restart.";
+
+    // hide the gallery
+    const gallery = document.getElementById("gallery") as HTMLDivElement;
+    gallery.innerHTML = "";
+
+    // hide the quiz section
+    const quiz = document.getElementById("quiz") as HTMLDivElement;
+    quiz.style.display = "none";
 }
 
 function addEventListeners() {
@@ -124,47 +154,52 @@ function addEventListeners() {
         processKey(ev.key);
         
         function processKey(key: string) {
-            const currentIndex = +document.getElementsByClassName("active")[0].id;
-            let newIndex;
+            if(game_ended) {
+                // if game has ended, press any key to restart.
+                images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW) as string[];
+                reloadGame(images_to_show);
+            }
+
+            const current_index = +document.getElementsByClassName("active")[0].id;
+            let new_index;
             
-            if(key === "ArrowUp" && currentIndex - num_cols > 0) {
-                newIndex = currentIndex - num_cols;
-                toggleActive(currentIndex, newIndex);
+            if(key === "ArrowUp" && current_index - num_cols > 0) {
+                new_index = current_index - num_cols;
+                toggleActive(current_index, new_index);
             }
-            else if(key === "ArrowDown" && currentIndex + num_cols <= NUM_IMAGES_TO_SHOW) {
-                newIndex = currentIndex + num_cols;
-                toggleActive(currentIndex, newIndex);
+            else if(key === "ArrowDown" && current_index + num_cols <= images_to_show.length) {
+                new_index = current_index + num_cols;
+                toggleActive(current_index, new_index);
             }
-            else if(key === "ArrowLeft" && currentIndex % num_cols != 1) {
-                newIndex = currentIndex - 1;
-                toggleActive(currentIndex, newIndex);
+            else if(key === "ArrowLeft" && current_index % num_cols != 1 && num_cols !== 1) {
+                new_index = current_index - 1;
+                toggleActive(current_index, new_index);
             }
-            else if(key === "ArrowRight" && currentIndex % num_cols != 0 && currentIndex + 1 <= NUM_IMAGES_TO_SHOW) {
-                newIndex = currentIndex + 1;
-                toggleActive(currentIndex, newIndex);
+            else if(key === "ArrowRight" && current_index % num_cols != 0 && current_index + 1 <= images_to_show.length) {
+                new_index = current_index + 1;
+                toggleActive(current_index, new_index);
+            }
+            else if(key === "Enter") {
+                const current_image = images_to_show[current_index-1];
+
+                // if filename matches, remove thumbnail. end game when there are no more images
+                if (current_image == quiz_img) {
+                    images_to_show.splice(current_index-1, 1);
+                    images_to_show.length == 0 ? endGame() : reloadGame(images_to_show);
+                }
             }
             else if(key === "r" || key === "End") {
                 // if user presses R or End, refresh page to randomise images again.
                 // we use End to provide convenience to users because it's near the arrow keys on the keyboard.
                 images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW) as string[];
-                paintImagesInGrid(images_to_show);
-
-                quiz_img = getRandomThumbnails(all_available_images, 1) as string;
-                paintQuiz(quiz_img);
-
-                toggleActive(currentIndex, 1);
-            }
-            else if(key === "Enter") {
-                console.log(images_to_show[currentIndex]);
-
-                // if filename matches, remove thumbnail
+                reloadGame(images_to_show)
             }
         }
         
-        function toggleActive(indexToRemove:number, indexToAdd:number) {
-            document.getElementById(indexToRemove.toString())?.classList.remove("active");
-            document.getElementById(indexToAdd.toString())?.classList.add("active");
-            document.getElementById(indexToAdd.toString())?.scrollIntoView();
+        function toggleActive(index_to_remove:number, index_to_add:number) {
+            document.getElementById(index_to_remove.toString())?.classList.remove("active");
+            document.getElementById(index_to_add.toString())?.classList.add("active");
+            document.getElementById(index_to_add.toString())?.scrollIntoView();
         }
     }
 }

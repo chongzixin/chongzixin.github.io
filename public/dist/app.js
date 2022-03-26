@@ -52,15 +52,16 @@ var all_available_images = [
     'max-jump.png',
     'harry-the-babybus.png',
 ];
-var NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
+var NUM_IMAGES_TO_SHOW = 4;
+// const NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
 var NUM_ROWS = 2; // change number of rows accordingly
-var num_cols = Math.ceil(NUM_IMAGES_TO_SHOW / NUM_ROWS);
 /* MAIN */
+var quiz_img;
+var game_ended;
 var images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW);
-paintImagesInGrid(images_to_show);
-var quiz_img = getRandomThumbnails(all_available_images, 1);
-paintQuiz(quiz_img);
+var num_cols;
 addEventListeners();
+reloadGame(images_to_show);
 /* FUNCTION DEFINITIONS */
 // randomly retrieve desired number of thumbnails from list
 function getRandomThumbnails(arr, num) {
@@ -78,6 +79,9 @@ function getRandomThumbnails(arr, num) {
     return num === 1 ? result[0] : result;
 }
 function paintImagesInGrid(images) {
+    num_cols = Math.ceil(images_to_show.length / NUM_ROWS);
+    var instructions = document.getElementById("instructions");
+    instructions.innerHTML = "Use the arrow keys (↑, ↓, ←, →) to find your favourite vehicle, press End to randomise image locations";
     // set number of rows and columns in CSS
     var gallery = document.getElementById("gallery");
     gallery.innerHTML = ""; // clear the gallery before painting
@@ -99,8 +103,27 @@ function paintImagesInGrid(images) {
     });
 }
 function paintQuiz(img) {
+    var quiz = document.getElementById("quiz");
+    quiz.style.display = "flex"; // show it again because it gets hidden when game ends
     var quiz_img = document.getElementById("quiz_img");
     quiz_img.src = "assets/".concat(img);
+}
+function reloadGame(images) {
+    game_ended = false;
+    quiz_img = getRandomThumbnails(images_to_show, 1);
+    paintImagesInGrid(images_to_show);
+    paintQuiz(quiz_img);
+}
+function endGame() {
+    game_ended = true;
+    var instructions = document.getElementById("instructions");
+    instructions.innerHTML = "You win! Press any key to restart.";
+    // hide the gallery
+    var gallery = document.getElementById("gallery");
+    gallery.innerHTML = "";
+    // hide the quiz section
+    var quiz = document.getElementById("quiz");
+    quiz.style.display = "none";
 }
 function addEventListeners() {
     window.onkeydown = function (ev) {
@@ -108,43 +131,49 @@ function addEventListeners() {
             return;
         processKey(ev.key);
         function processKey(key) {
-            var currentIndex = +document.getElementsByClassName("active")[0].id;
-            var newIndex;
-            if (key === "ArrowUp" && currentIndex - num_cols > 0) {
-                newIndex = currentIndex - num_cols;
-                toggleActive(currentIndex, newIndex);
+            if (game_ended) {
+                // if game has ended, press any key to restart.
+                images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW);
+                reloadGame(images_to_show);
             }
-            else if (key === "ArrowDown" && currentIndex + num_cols <= NUM_IMAGES_TO_SHOW) {
-                newIndex = currentIndex + num_cols;
-                toggleActive(currentIndex, newIndex);
+            var current_index = +document.getElementsByClassName("active")[0].id;
+            var new_index;
+            if (key === "ArrowUp" && current_index - num_cols > 0) {
+                new_index = current_index - num_cols;
+                toggleActive(current_index, new_index);
             }
-            else if (key === "ArrowLeft" && currentIndex % num_cols != 1) {
-                newIndex = currentIndex - 1;
-                toggleActive(currentIndex, newIndex);
+            else if (key === "ArrowDown" && current_index + num_cols <= images_to_show.length) {
+                new_index = current_index + num_cols;
+                toggleActive(current_index, new_index);
             }
-            else if (key === "ArrowRight" && currentIndex % num_cols != 0 && currentIndex + 1 <= NUM_IMAGES_TO_SHOW) {
-                newIndex = currentIndex + 1;
-                toggleActive(currentIndex, newIndex);
+            else if (key === "ArrowLeft" && current_index % num_cols != 1 && num_cols !== 1) {
+                new_index = current_index - 1;
+                toggleActive(current_index, new_index);
+            }
+            else if (key === "ArrowRight" && current_index % num_cols != 0 && current_index + 1 <= images_to_show.length) {
+                new_index = current_index + 1;
+                toggleActive(current_index, new_index);
+            }
+            else if (key === "Enter") {
+                var current_image = images_to_show[current_index - 1];
+                // if filename matches, remove thumbnail. end game when there are no more images
+                if (current_image == quiz_img) {
+                    images_to_show.splice(current_index - 1, 1);
+                    images_to_show.length == 0 ? endGame() : reloadGame(images_to_show);
+                }
             }
             else if (key === "r" || key === "End") {
                 // if user presses R or End, refresh page to randomise images again.
                 // we use End to provide convenience to users because it's near the arrow keys on the keyboard.
                 images_to_show = getRandomThumbnails(all_available_images, NUM_IMAGES_TO_SHOW);
-                paintImagesInGrid(images_to_show);
-                quiz_img = getRandomThumbnails(all_available_images, 1);
-                paintQuiz(quiz_img);
-                toggleActive(currentIndex, 1);
-            }
-            else if (key === "Enter") {
-                console.log(images_to_show[currentIndex]);
-                // if filename matches, remove thumbnail
+                reloadGame(images_to_show);
             }
         }
-        function toggleActive(indexToRemove, indexToAdd) {
+        function toggleActive(index_to_remove, index_to_add) {
             var _a, _b, _c;
-            (_a = document.getElementById(indexToRemove.toString())) === null || _a === void 0 ? void 0 : _a.classList.remove("active");
-            (_b = document.getElementById(indexToAdd.toString())) === null || _b === void 0 ? void 0 : _b.classList.add("active");
-            (_c = document.getElementById(indexToAdd.toString())) === null || _c === void 0 ? void 0 : _c.scrollIntoView();
+            (_a = document.getElementById(index_to_remove.toString())) === null || _a === void 0 ? void 0 : _a.classList.remove("active");
+            (_b = document.getElementById(index_to_add.toString())) === null || _b === void 0 ? void 0 : _b.classList.add("active");
+            (_c = document.getElementById(index_to_add.toString())) === null || _c === void 0 ? void 0 : _c.scrollIntoView();
         }
     };
 }

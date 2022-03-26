@@ -46,12 +46,12 @@ img {
 }
 
 .thumbnail {
-    width: 10%;
-    height: 10%;
+    width: 15%;
+    height: 20%;
     object-fit: cover;
 }
 
-.quiz {
+#quiz {
     color: #99d6ea;
     display: flex;
     justify-content: center;
