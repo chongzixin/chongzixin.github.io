@@ -52,7 +52,7 @@ var all_available_images = [
     'max-jump.png',
     'harry-the-babybus.png',
 ];
-var NUM_IMAGES_TO_SHOW = 4;
+var NUM_IMAGES_TO_SHOW = 16;
 // const NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
 var NUM_ROWS = 2; // change number of rows accordingly
 /* MAIN */
