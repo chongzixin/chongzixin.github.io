@@ -106,16 +106,17 @@ function paintImagesInGrid(images:string[]) {
         gallery_item.id = (index + 1).toString();  // add 1 to the index to process our calculation
         gallery_item.className = "grid-item";
         
-        // if this is the first image, set it as active
-        if(index === 0) {
-            gallery_item.className += " active";
-        }
-        
         const image = document.createElement("img") as HTMLImageElement;
         image.src = `assets/${filename}`;
         gallery_item.appendChild(image);
         
         gallery.appendChild(gallery_item);
+
+        // if this is the first image, set it as active
+        if(index === 0) {
+            gallery_item.className += " active";
+            gallery_item.scrollIntoView();
+        }
     });
 }
 

@@ -92,14 +92,15 @@ function paintImagesInGrid(images) {
         var gallery_item = document.createElement("div");
         gallery_item.id = (index + 1).toString(); // add 1 to the index to process our calculation
         gallery_item.className = "grid-item";
-        // if this is the first image, set it as active
-        if (index === 0) {
-            gallery_item.className += " active";
-        }
         var image = document.createElement("img");
         image.src = "assets/".concat(filename);
         gallery_item.appendChild(image);
         gallery.appendChild(gallery_item);
+        // if this is the first image, set it as active
+        if (index === 0) {
+            gallery_item.className += " active";
+            gallery_item.scrollIntoView();
+        }
     });
 }
 function paintQuiz(img) {
