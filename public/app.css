@@ -44,3 +44,22 @@ img {
     height: 100%;
     object-fit: cover;
 }
+
+.thumbnail {
+    width: 8%;
+    height: 8%;
+    object-fit: cover;
+}
+
+#quiz {
+    color: #99d6ea;
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.quiz-text {
+    align-items: center;
+    display: flex;
+    margin-right: 1em;
+}
