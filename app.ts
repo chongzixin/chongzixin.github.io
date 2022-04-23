@@ -51,6 +51,9 @@ const all_available_images: string[] = [
     'dot-the-babybus.png',
     'max-jump.png',
     'harry-the-babybus.png',
+    'gecko-construction-vehicles.png',
+    'bobby-bus-moody.png',
+    'gecko-respray-machine.png',
 ];
 
 const NUM_IMAGES_TO_SHOW = 20;

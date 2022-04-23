@@ -51,6 +51,9 @@ var all_available_images = [
     'dot-the-babybus.png',
     'max-jump.png',
     'harry-the-babybus.png',
+    'gecko-construction-vehicles.png',
+    'bobby-bus-moody.png',
+    'gecko-respray-machine.png',
 ];
 var NUM_IMAGES_TO_SHOW = 20;
 // const NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
