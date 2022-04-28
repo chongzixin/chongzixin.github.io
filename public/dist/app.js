@@ -54,6 +54,9 @@ var all_available_images = [
     'gecko-construction-vehicles.png',
     'bobby-bus-moody.png',
     'gecko-respray-machine.png',
+    'max-different-colours.png',
+    'gecko-mechanicals-sleeping.png',
+    'max-halloween-monster.png',
 ];
 var NUM_IMAGES_TO_SHOW = 20;
 // const NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.

@@ -54,6 +54,9 @@ const all_available_images: string[] = [
     'gecko-construction-vehicles.png',
     'bobby-bus-moody.png',
     'gecko-respray-machine.png',
+    'max-different-colours.png',
+    'gecko-mechanicals-sleeping.png',
+    'max-halloween-monster.png',
 ];
 
 const NUM_IMAGES_TO_SHOW = 20;
