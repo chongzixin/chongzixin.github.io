@@ -57,10 +57,13 @@ const all_available_images: string[] = [
     'max-different-colours.png',
     'gecko-mechanicals-sleeping.png',
     'max-halloween-monster.png',
+    'five-baby-trucks.png',
+    'celia-cement-vicky.png',
+    'gecko-xmas-tree.png',
 ];
 
-const NUM_IMAGES_TO_SHOW = 20;
-// const NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
+// const NUM_IMAGES_TO_SHOW = 20;
+const NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
 const NUM_ROWS = 2; // change number of rows accordingly
 
 /* MAIN */
