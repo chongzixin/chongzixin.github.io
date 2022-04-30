@@ -60,6 +60,11 @@ const all_available_images: string[] = [
     'five-baby-trucks.png',
     'celia-cement-vicky.png',
     'gecko-xmas-tree.png',
+    'gecko-halloween-characters.png',
+    'gecko-looking-atyou.png',
+    'gecko-the-vampire.png',
+    'christmas-toy-workshop.png',
+    'helen-fetching-rick.png',
 ];
 
 // const NUM_IMAGES_TO_SHOW = 20;

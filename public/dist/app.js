@@ -60,6 +60,11 @@ var all_available_images = [
     'five-baby-trucks.png',
     'celia-cement-vicky.png',
     'gecko-xmas-tree.png',
+    'gecko-halloween-characters.png',
+    'gecko-looking-atyou.png',
+    'gecko-the-vampire.png',
+    'christmas-toy-workshop.png',
+    'helen-fetching-rick.png',
 ];
 // const NUM_IMAGES_TO_SHOW = 20;
 var NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
