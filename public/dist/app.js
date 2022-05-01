@@ -65,6 +65,11 @@ var all_available_images = [
     'gecko-the-vampire.png',
     'christmas-toy-workshop.png',
     'helen-fetching-rick.png',
+    'gecko-garage-rainbow.png',
+    'gecko-with-drpoppy.png',
+    'tilly-becomes-caroline.png',
+    'gecko-with-mrweasel.png',
+    'fiona-jumps-birthday.png',
 ];
 // const NUM_IMAGES_TO_SHOW = 20;
 var NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
