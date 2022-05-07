@@ -70,6 +70,13 @@ var all_available_images = [
     'tilly-becomes-caroline.png',
     'gecko-with-mrweasel.png',
     'fiona-jumps-birthday.png',
+    'babytruck-surprise-dinner.png',
+    'mechanical-with-snowman.png',
+    'gecko-mechanical-abc.png',
+    'baby-truck-jump.png',
+    'bobby-babytruck-colourful.png',
+    'super-mechanical-adventure.png',
+    'rick-ryan-zoo.png',
 ];
 // const NUM_IMAGES_TO_SHOW = 20;
 var NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
