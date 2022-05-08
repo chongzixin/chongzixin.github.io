@@ -1,6 +1,6 @@
-// TODO: handle keyboard event listener
-// TODO: make grid bigger
 // TODO: change X and O colours
+// TODO: when somebody wins, hide board and change instruction message
+// TODO: handle keyboard event listener
 
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'

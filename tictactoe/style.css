@@ -22,13 +22,12 @@ h2 {
   }
   
   :root {
-    --cell-size: 100px;
+    --cell-size: 250px;
     --mark-size: calc(var(--cell-size) * .9);
   }
   
   .board {
-    width: 100vw;
-    height: 100vh;
+    padding-top: 3em;
     display: grid;
     justify-content: center;
     align-content: center;
