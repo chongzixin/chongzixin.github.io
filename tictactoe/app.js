@@ -1,4 +1,4 @@
-// TODO: change X and O colours
+// TODO: indicate whose turn on instruction
 // TODO: when somebody wins, hide board and change instruction message
 // TODO: handle keyboard event listener
 

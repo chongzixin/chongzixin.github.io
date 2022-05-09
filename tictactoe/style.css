@@ -1,5 +1,18 @@
+:root {
+    --cell-size: 250px;
+    
+    --bg-color: #1b1d36;
+    --primary-color: #fca6d1;
+    --secondary-color: #99d6ea;
+    --x-color: #fed9eb; /* for hover */
+    --x-color-set: var(--primary-color); /* when set */
+    --o-color: #d7ecf4; /* for hover */
+    --o-color-set: var(--secondary-color); /* when set */
+    --l: 35px; /* X line-width */
+}
+
 body {
-    background-color: #1b1d36;
+    background-color: var(--bg-color);
     margin: 0;
 }
 
@@ -10,23 +23,18 @@ body {
 
 h1 {
     font-size: 8em;
-    color: #fca6d1;
+    color: var(--primary-color);
 }
 
 h2 {
-    color: #99d6ea;
+    color: var(--secondary-color);
 }
 
 *, *::after, *::before {
     box-sizing: border-box;
-  }
-  
-  :root {
-    --cell-size: 250px;
-    --mark-size: calc(var(--cell-size) * .9);
-  }
-  
-  .board {
+}
+
+.board {
     padding-top: 3em;
     display: grid;
     justify-content: center;
@@ -34,9 +42,9 @@ h2 {
     justify-items: center;
     align-items: center;
     grid-template-columns: repeat(3, auto)
-  }
-  
-  .cell {
+}
+
+.cell {
     width: var(--cell-size);
     height: var(--cell-size);
     border: 3px solid white;
@@ -45,88 +53,62 @@ h2 {
     align-items: center;
     position: relative;
     cursor: pointer;
-  }
-  
-  .cell:first-child,
-  .cell:nth-child(2),
-  .cell:nth-child(3) {
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
     border-top: none;
-  }
-  
-  .cell:nth-child(3n + 1) {
+}
+
+.cell:nth-child(3n + 1) {
     border-left: none;
-  }
-  
-  .cell:nth-child(3n + 3) {
+}
+
+.cell:nth-child(3n + 3) {
     border-right: none;
-  }
-  
-  .cell:last-child,
-  .cell:nth-child(8),
-  .cell:nth-child(7) {
+}
+
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
     border-bottom: none;
-  }
-  
-  .cell.x,
-  .cell.circle {
+}
+
+.cell.x,
+.cell.circle {
     cursor: not-allowed;
-  }
-  
-  .cell.x::before,
-  .cell.x::after,
-  .cell.circle::before {
-    background-color: black;
-  }
-  
-  .board.x .cell:not(.x):not(.circle):hover::before,
-  .board.x .cell:not(.x):not(.circle):hover::after,
-  .board.circle .cell:not(.x):not(.circle):hover::before {
-    background-color: lightgrey;
-  }
-  
-  .cell.x::before,
-  .cell.x::after,
-  .board.x .cell:not(.x):not(.circle):hover::before,
-  .board.x .cell:not(.x):not(.circle):hover::after {
-    content: '';
-    position: absolute;
-    width: calc(var(--mark-size) * .15);
-    height: var(--mark-size);
-  }
-  
-  .cell.x::before,
-  .board.x .cell:not(.x):not(.circle):hover::before {
-    transform: rotate(45deg);
-  }
-  
-  .cell.x::after,
-  .board.x .cell:not(.x):not(.circle):hover::after {
-    transform: rotate(-45deg);
-  }
-  
-  .cell.circle::before,
-  .cell.circle::after,
-  .board.circle .cell:not(.x):not(.circle):hover::before,
-  .board.circle .cell:not(.x):not(.circle):hover::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-  }
-  
-  .cell.circle::before,
-  .board.circle .cell:not(.x):not(.circle):hover::before {
-    width: var(--mark-size);
-    height: var(--mark-size);
-  }
-  
-  .cell.circle::after,
-  .board.circle .cell:not(.x):not(.circle):hover::after {
-    width: calc(var(--mark-size) * .7);
-    height: calc(var(--mark-size) * .7);
-    background-color: white;
-  }
-  
-  .winning-message {
+}
+
+/* for cross */
+.board.x .cell:not(.circle):not(.x):hover {
+    background: linear-gradient(to top right, transparent calc(50% - var(--l) / 2), var(--x-color) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2)),
+    linear-gradient(to bottom right, transparent calc(50% - var(--l) / 2), var(--x-color) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2));
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* for cross (set) */
+.cell:not(.circle).x {
+    background: linear-gradient(to top right, transparent calc(50% - var(--l) / 2), var(--x-color-set) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2)),
+    linear-gradient(to bottom right, transparent calc(50% - var(--l) / 2), var(--x-color-set) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2));
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* for circle */
+.board.circle .cell:not(.circle):not(.x):hover {	
+    background: radial-gradient(circle, #1b1d36 40%, var(--o-color) 40%, var(--o-color) 60%, transparent 60%);
+}
+
+/* for circle (set) */
+.cell:not(.x).circle {
+    background: radial-gradient(circle, #1b1d36 40%, var(--o-color-set) 40%, var(--o-color-set) 60%, transparent 60%);
+}
+
+.winning-message {
     display: none;
     position: fixed;
     top: 0;
@@ -139,22 +121,22 @@ h2 {
     color: white;
     font-size: 5rem;
     flex-direction: column;
-  }
-  
-  .winning-message button {
+}
+
+.winning-message button {
     font-size: 3rem;
     background-color: white;
     border: 1px solid black;
     padding: .25em .5em;
     cursor: pointer;
-  }
-  
-  .winning-message button:hover {
+}
+
+.winning-message button:hover {
     background-color: black;
     color: white;
     border-color: white;
-  }
-  
-  .winning-message.show {
+}
+
+.winning-message.show {
     display: flex;
-  }
+}
