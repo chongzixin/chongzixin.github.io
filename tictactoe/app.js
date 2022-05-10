@@ -23,7 +23,7 @@ startGame()
 restartButton.addEventListener('click', startGame)
 
 function startGame() {
-  instructions.innerHTML = "Use the arrow keys (↑, ↓, ←, →) then press Enter to confirm position. Press End to restart";
+  instructions.innerText = "Use the arrow keys (↑, ↓, ←, →) then press Enter to confirm position. Press End to restart";
   circleTurn = false
   cellElements.forEach(cell => {
     cell.classList.remove(X_CLASS)
@@ -81,6 +81,7 @@ function setBoardHoverClass(visible) {
   board.classList.remove(X_CLASS)
   board.classList.remove(CIRCLE_CLASS)
   if (visible) {
+    // show hovering depending on whose turn
     circleTurn ? board.classList.add(CIRCLE_CLASS) : board.classList.add(X_CLASS)
   }
 }
