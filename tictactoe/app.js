@@ -1,5 +1,3 @@
-// TODO: indicate whose turn on instruction
-// TODO: when somebody wins, hide board and change instruction message
 // TODO: handle keyboard event listener
 
 const X_CLASS = 'x'
@@ -16,9 +14,8 @@ const WINNING_COMBINATIONS = [
 ]
 const cellElements = document.querySelectorAll('[data-cell]')
 const board = document.getElementById('board')
-const winningMessageElement = document.getElementById('winningMessage')
-const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
 const instructions = document.getElementById('instructions')
+const header = document.getElementById('header')
 let circleTurn
 
 startGame()
@@ -31,11 +28,9 @@ function startGame() {
   cellElements.forEach(cell => {
     cell.classList.remove(X_CLASS)
     cell.classList.remove(CIRCLE_CLASS)
-    cell.removeEventListener('click', handleClick)
     cell.addEventListener('click', handleClick, { once: true })
   })
-  setBoardHoverClass()
-  winningMessageElement.classList.remove('show')
+  setBoardHoverClass(true)
 }
 
 function handleClick(e) {
@@ -48,17 +43,22 @@ function handleClick(e) {
     endGame(true)
   } else {
     swapTurns()
-    setBoardHoverClass()
+    setBoardHoverClass(true)
   }
 }
 
 function endGame(draw) {
-  if (draw) {
-    winningMessageTextElement.innerText = 'Draw!'
-  } else {
-    winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`
-  }
-  winningMessageElement.classList.add('show')
+  header.innerText = draw ? 'Draw!' : `${circleTurn ? "O" : "X"} Wins!`
+  instructions.innerText = "Press any key to restart"
+  freezeBoard()
+}
+
+function freezeBoard() {
+  // remove all event listeners on cell and disable hovering
+  cellElements.forEach(cell => {
+    cell.removeEventListener('click', handleClick)
+  })
+  setBoardHoverClass(false)
 }
 
 function isDraw() {
@@ -73,15 +73,15 @@ function placeMark(cell, currentClass) {
 
 function swapTurns() {
   circleTurn = !circleTurn
+  header.innerText = circleTurn ? "O's turn" : "X's turn"
+  header.style.color = circleTurn ? "var(--o-color-set)" : "var(--x-color-set)"
 }
 
-function setBoardHoverClass() {
+function setBoardHoverClass(visible) {
   board.classList.remove(X_CLASS)
   board.classList.remove(CIRCLE_CLASS)
-  if (circleTurn) {
-    board.classList.add(CIRCLE_CLASS)
-  } else {
-    board.classList.add(X_CLASS)
+  if (visible) {
+    circleTurn ? board.classList.add(CIRCLE_CLASS) : board.classList.add(X_CLASS)
   }
 }
 
