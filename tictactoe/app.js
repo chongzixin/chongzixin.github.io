@@ -1,7 +1,6 @@
-// TODO: handle keyboard event listener
-
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
+const SELECTED_CLASS = 'selected'
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
@@ -30,16 +29,18 @@ function startGame() {
   circleTurn = false
   gameEnded = false
 
-  cellElements.forEach(cell => {
-    cell.classList.remove(X_CLASS)
-    cell.classList.remove(CIRCLE_CLASS)
+  cellElements.forEach((cell, index) => {
+    cell.classList.remove(...[SELECTED_CLASS, CIRCLE_CLASS, X_CLASS])
     cell.addEventListener('click', handleClick, { once: true })
+
+    if(index === 0) cell.classList.add(SELECTED_CLASS)
   })
   setBoardHoverClass(true)
 }
 
 function handleClick(e) {
-  const cell = e.target
+  // if we came from a pointer event, set to its target. else it came from keyboard event so use it directly
+  cell = e instanceof PointerEvent ? e.target : e
   const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
   placeMark(cell, currentClass)
   if (checkWin(currentClass)) {
@@ -49,6 +50,7 @@ function handleClick(e) {
   } else {
     swapTurns()
     setBoardHoverClass(true)
+    // TODO: place keyboard mark at the next available cell
   }
 }
 
@@ -103,15 +105,46 @@ function checkWin(currentClass) {
 function addEventListeners() {
   window.onkeydown = ev => {
     if(ev.defaultPrevented) return
-    if(gameEnded) startGame()
+    processKeys(ev.key)
+
+    function processKeys(key) {
+        if(gameEnded) startGame()
     
-    console.log(ev.key)
-    switch(ev.key) {
-      case 'r':
-      case 'End':
-        startGame()
-        break
-      default:
+        const currentIndex = document.getElementsByClassName(SELECTED_CLASS)[0].id
+        let newIndex
+
+        // TODO: check that cell is not already marked
+
+        if(key === "ArrowUp" && !["0", "1", "2"].includes(currentIndex)) {
+            newIndex = +currentIndex - 3;
+            toggleActive(currentIndex, newIndex);
+        }
+        else if(key === "ArrowDown" && !["6", "7", "8"].includes(currentIndex)) {
+            newIndex = +currentIndex + 3;
+            toggleActive(currentIndex, newIndex);
+        }
+        else if(key === "ArrowLeft" && !["0", "3", "6"].includes(currentIndex)) {
+            newIndex = +currentIndex - 1;
+            toggleActive(currentIndex, newIndex);
+        }
+        else if(key === "ArrowRight" && !["2", "5", "8"].includes(currentIndex)) {
+            newIndex = +currentIndex + 1;
+            toggleActive(currentIndex, newIndex);
+        }
+        else if(key === "Enter") {
+            const currentCell = document.getElementById(currentIndex)
+            handleClick(currentCell)
+        }
+        else if(key === "r" || key === "End") {
+            // if user presses R or End, reset game
+            // we use End to provide convenience to users because it's near the arrow keys on the keyboard.
+            startGame()
+        }
+    }
+
+    function toggleActive(cellToRemove, cellToAdd) {
+        document.getElementById(cellToRemove.toString()).classList.remove(SELECTED_CLASS);
+        document.getElementById(cellToAdd.toString()).classList.add(SELECTED_CLASS);
     }
   }
 }
