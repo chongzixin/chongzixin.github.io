@@ -106,5 +106,12 @@ function addEventListeners() {
     if(gameEnded) startGame()
     
     console.log(ev.key)
+    switch(ev.key) {
+      case 'r':
+      case 'End':
+        startGame()
+        break
+      default:
+    }
   }
 }
