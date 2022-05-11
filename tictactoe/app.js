@@ -1,3 +1,5 @@
+// TODO: organise methods for logic and UI
+
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
 const SELECTED_CLASS = 'selected'
@@ -15,8 +17,10 @@ const cellElements = document.querySelectorAll('[data-cell]')
 const board = document.getElementById('board')
 const instructions = document.getElementById('instructions')
 const header = document.getElementById('header')
+
 let circleTurn
 let gameEnded
+let unmarkedCells
 
 addEventListeners()
 startGame()
@@ -28,6 +32,7 @@ function startGame() {
 
   circleTurn = false
   gameEnded = false
+  unmarkedCells = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
   cellElements.forEach((cell, index) => {
     cell.classList.remove(...[SELECTED_CLASS, CIRCLE_CLASS, X_CLASS])
@@ -49,9 +54,15 @@ function handleClick(e) {
     endGame(true)
   } else {
     swapTurns()
+    unmarkedCells = unmarkedCells.filter(value => value != cell.id) // remove this index from list of remaining cells
     setBoardHoverClass(true)
-    // TODO: place keyboard mark at the next available cell
+    toggleActive(cell.id, Math.min(...unmarkedCells))
   }
+}
+
+function toggleActive(cellToRemove, cellToAdd) {
+    document.getElementById(cellToRemove.toString()).classList.remove(SELECTED_CLASS);
+    document.getElementById(cellToAdd.toString()).classList.add(SELECTED_CLASS);
 }
 
 function endGame(draw) {
@@ -140,11 +151,6 @@ function addEventListeners() {
             // we use End to provide convenience to users because it's near the arrow keys on the keyboard.
             startGame()
         }
-    }
-
-    function toggleActive(cellToRemove, cellToAdd) {
-        document.getElementById(cellToRemove.toString()).classList.remove(SELECTED_CLASS);
-        document.getElementById(cellToAdd.toString()).classList.add(SELECTED_CLASS);
     }
   }
 }
