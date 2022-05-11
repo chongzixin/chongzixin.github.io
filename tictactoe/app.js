@@ -17,14 +17,19 @@ const board = document.getElementById('board')
 const instructions = document.getElementById('instructions')
 const header = document.getElementById('header')
 let circleTurn
+let gameEnded
 
+addEventListeners()
 startGame()
 
-restartButton.addEventListener('click', startGame)
-
 function startGame() {
+  header.innerText = "Hello, Arthur"
+  header.style.color = "var(--primary-color)"
   instructions.innerText = "Use the arrow keys (↑, ↓, ←, →) then press Enter to confirm position. Press End to restart";
+
   circleTurn = false
+  gameEnded = false
+
   cellElements.forEach(cell => {
     cell.classList.remove(X_CLASS)
     cell.classList.remove(CIRCLE_CLASS)
@@ -50,6 +55,7 @@ function handleClick(e) {
 function endGame(draw) {
   header.innerText = draw ? 'Draw!' : `${circleTurn ? "O" : "X"} Wins!`
   instructions.innerText = "Press any key to restart"
+  gameEnded = true
   freezeBoard()
 }
 
@@ -92,4 +98,13 @@ function checkWin(currentClass) {
       return cellElements[index].classList.contains(currentClass)
     })
   })
+}
+
+function addEventListeners() {
+  window.onkeydown = ev => {
+    if(ev.defaultPrevented) return
+    if(gameEnded) startGame()
+    
+    console.log(ev.key)
+  }
 }
