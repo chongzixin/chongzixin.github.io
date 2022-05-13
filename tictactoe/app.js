@@ -124,8 +124,6 @@ function addEventListeners() {
         const currentIndex = document.getElementsByClassName(SELECTED_CLASS)[0].id
         let newIndex
 
-        // TODO: check that cell is not already marked
-
         if(key === "ArrowUp" && !["0", "1", "2"].includes(currentIndex)) {
             newIndex = +currentIndex - 3;
             toggleActive(currentIndex, newIndex);
