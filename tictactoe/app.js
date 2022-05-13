@@ -122,24 +122,28 @@ function addEventListeners() {
         if(gameEnded) startGame()
     
         const currentIndex = document.getElementsByClassName(SELECTED_CLASS)[0].id
-        let newIndex
+        let newIndex, newIndexPossibilities
 
         // TODO: check that cell is not already marked
 
         if(key === "ArrowUp" && !["0", "1", "2"].includes(currentIndex)) {
-            newIndex = +currentIndex - 3;
+            newIndexPossibilities = [+currentIndex - 3, +currentIndex - 6]
+            newIndex = findNextIndex(currentIndex, newIndexPossibilities, unmarkedCells, Math.max)
             toggleActive(currentIndex, newIndex);
         }
         else if(key === "ArrowDown" && !["6", "7", "8"].includes(currentIndex)) {
-            newIndex = +currentIndex + 3;
+            newIndexPossibilities = [+currentIndex + 3, +currentIndex + 6]
+            newIndex = findNextIndex(currentIndex, newIndexPossibilities, unmarkedCells, Math.min)
             toggleActive(currentIndex, newIndex);
         }
         else if(key === "ArrowLeft" && !["0", "3", "6"].includes(currentIndex)) {
-            newIndex = +currentIndex - 1;
+            newIndexPossibilities = [+currentIndex - 1, +currentIndex - 2]
+            newIndex = findNextIndex(currentIndex, newIndexPossibilities, unmarkedCells, Math.max)
             toggleActive(currentIndex, newIndex);
         }
         else if(key === "ArrowRight" && !["2", "5", "8"].includes(currentIndex)) {
-            newIndex = +currentIndex + 1;
+            newIndexPossibilities = [+currentIndex + 1, +currentIndex + 2]
+            newIndex = findNextIndex(currentIndex, newIndexPossibilities, unmarkedCells, Math.min)
             toggleActive(currentIndex, newIndex);
         }
         else if(key === "Enter") {
@@ -151,6 +155,16 @@ function addEventListeners() {
             // we use End to provide convenience to users because it's near the arrow keys on the keyboard.
             startGame()
         }
+    }
+
+    function findNextIndex(currentIndex, array1, array2, func) {
+        console.log("currentIndex: " + currentIndex)
+        console.log("array1: " + array1)
+        console.log("array2: " + array2)
+        const ret = array1.filter(element => array2.includes(element))
+        // if array is empty, use currentIndex. else return smallest number in the matched array
+        console.log("ret: " + ret)
+        return ret.length === 0 ? currentIndex : func(...ret)
     }
   }
 }
