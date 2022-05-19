@@ -78,8 +78,8 @@ var all_available_images = [
     'super-mechanical-adventure.png',
     'rick-ryan-zoo.png',
 ];
-// const NUM_IMAGES_TO_SHOW = 20;
-var NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
+var NUM_IMAGES_TO_SHOW = 20;
+// const NUM_IMAGES_TO_SHOW = all_available_images.length; // change num images accordingly, show all by default.
 var NUM_ROWS = 2; // change number of rows accordingly
 /* MAIN */
 var quiz_img;
