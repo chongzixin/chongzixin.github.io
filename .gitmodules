@@ -1,3 +1,6 @@
 [submodule "xoxo"]
 	path = xoxo
 	url = git@github.com:chongzixin/xoxo.git
+[submodule "ytkids"]
+	path = ytkids
+	url = git@github.com:chongzixin/ytkids-simu.git
