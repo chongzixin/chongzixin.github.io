@@ -24,3 +24,6 @@ With submodules, we now have to straddle between 2 repos and perform additional 
 Depending on how often I make changes to the submodules, I will re-evaluate the usefulness of this strategy again at a later time. In the meantime, the implementation can be found on the `use-submodules` branch [here](https://github.com/chongzixin/chongzixin.github.io/tree/use-submodules).
 - [Youtube Kids Simulator Repo](https://github.com/chongzixin/ytkids-simu)
 - [XOXO (Tic-Tac-Toe)](https://github.com/chongzixin/xoxo)
+
+##### UPDATE: automating deployments from submodule changes
+Referencing this [StackOverflow thread](https://stackoverflow.com/questions/64407333/using-github-actions-to-automatically-update-the-repos-submodules), I implemented a GitHub Actions workflow on the `ytkids` repo, which automatically triggers a submodule update on this branch whenever a push on the child repo's `main` branch is detected. This essentially skips additional steps 4 and 5 mentioned above, and deploys any changes immediately to live.
